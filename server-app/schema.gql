@@ -1,0 +1,69 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input BlockUserInput {
+  _id: String!
+  isBlocked: Boolean!
+}
+
+input GetUsersInput {
+  filterString: String!
+  limit: Float!
+  skip: Float!
+}
+
+type GetUsersResponse {
+  count: Float!
+  users: [User!]!
+}
+
+type LoginResponse {
+  accessToken: String!
+  user: User!
+}
+
+input LoginUserInput {
+  password: String!
+  username: String!
+}
+
+type Mutation {
+  blockUser(blockUserInput: BlockUserInput!): User!
+  deleteUser(userId: String!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  register(registerUserInput: RegisterUserInput!): User!
+}
+
+type Query {
+  getUser: User!
+  getUsers(getUsersInput: GetUsersInput!): GetUsersResponse!
+}
+
+input RegisterUserInput {
+  email: String!
+  name: String!
+  password: String!
+  phoneNumber: String!
+  surname: String!
+}
+
+type User {
+  _id: String!
+  avatar: String
+  email: String!
+  favorites: [String!]!
+  isBlocked: Boolean!
+  isDeleted: Boolean!
+  name: String!
+  passwordHash: String!
+  phoneNumber: String!
+  role: UserRole!
+  surname: String!
+}
+
+"""User roles"""
+enum UserRole {
+  ADMIN
+  USER
+}
