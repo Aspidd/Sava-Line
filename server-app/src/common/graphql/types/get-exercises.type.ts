@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Exercise } from 'src/data/models/exercises.model';
+import { Exercise } from 'src/data/models/exercise.model';
 
 @ObjectType()
 export class GetExercisesResponse {

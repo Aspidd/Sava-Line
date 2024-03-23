@@ -27,10 +27,8 @@ export class ExerciseResolver {
     }
 
     @Roles(userRoles.ADMIN)
-    @Mutation(() => Exercise, { name: 'deleteExercise' })
-    async deleteExercise(
-        @Args('exerciseId') exerciseId: string
-    ): Promise<Exercise> {
+    @Mutation(() => Exercise, { name: 'deleteExercise', nullable: true })
+    async deleteExercise(@Args('exerciseId') exerciseId: string): Promise<Exercise> {
         return this.exerciseService.deleteExercise(exerciseId);
     }
 }

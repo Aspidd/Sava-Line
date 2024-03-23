@@ -15,6 +15,12 @@ input CreateExerciseInput {
   videos: [MediaObjectInput!]!
 }
 
+input CreateLessonInput {
+  description: String!
+  images: [MediaObjectInput!]!
+  name: String!
+}
+
 type Exercise {
   _id: String!
   description: String!
@@ -35,6 +41,17 @@ type GetExercisesResponse {
   exercises: [Exercise!]!
 }
 
+input GetLessonsInput {
+  filterString: String!
+  limit: Float!
+  skip: Float!
+}
+
+type GetLessonsResponse {
+  count: Float!
+  exercises: [Lesson!]!
+}
+
 input GetUsersInput {
   filterString: String!
   limit: Float!
@@ -44,6 +61,13 @@ input GetUsersInput {
 type GetUsersResponse {
   count: Float!
   users: [User!]!
+}
+
+type Lesson {
+  _id: String!
+  description: String!
+  images: [MediaObject!]!
+  name: String!
 }
 
 type LoginResponse {
@@ -67,9 +91,11 @@ input MediaObjectInput {
 }
 
 type Mutation {
-  blockUser(blockUserInput: BlockUserInput!): User!
+  blockUser(blockUserInput: BlockUserInput!): User
   createExercise(createExerciseInput: CreateExerciseInput!): Exercise!
-  deleteExercise(exerciseId: String!): Exercise!
+  createLesson(createLessonInput: CreateLessonInput!): Lesson!
+  deleteExercise(exerciseId: String!): Exercise
+  deleteLesson(lessonId: String!): Lesson
   deleteUser(userId: String!): User!
   login(loginUserInput: LoginUserInput!): LoginResponse!
   register(registerUserInput: RegisterUserInput!): User!
@@ -77,6 +103,7 @@ type Mutation {
 
 type Query {
   getExercises(getExerciseInput: GetExerciseInput!): GetExercisesResponse!
+  getLessons(getLessonsInput: GetLessonsInput!): GetLessonsResponse!
   getUser: User!
   getUsers(getUsersInput: GetUsersInput!): GetUsersResponse!
 }

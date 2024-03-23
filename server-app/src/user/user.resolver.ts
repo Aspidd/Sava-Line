@@ -57,7 +57,7 @@ export class UserResolver {
 
     @Roles(userRoles.ADMIN)
     @UseGuards(JwtAuthGuard, RoleGuard)
-    @Mutation(() => User, { name: 'blockUser' })
+    @Mutation(() => User, { name: 'blockUser', nullable: true })
     async blockUser(
         @Args('blockUserInput') blockUserInput: BlockUserInput,
         // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
